@@ -1,0 +1,240 @@
+
+========================================
+STARTING SESSION: SESSION-e7e62be1
+========================================
+2025-12-04 15:24:00,001 | INFO | [SESSION-e7e62be1] Processing: heat and thermodynamics by mathur d.s.
+2025-12-04 15:24:03,469 | INFO | [SESSION-e7e62be1] LOCKED IN WORKING MODEL: models/gemini-2.0-flash
+2025-12-04 15:24:03,479 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:04,506 | INFO | [SESSION-e7e62be1] Processing: hydraulic machines including fluidics not applicable by jagadish lal
+2025-12-04 15:24:04,741 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:heat%20and%20thermodynamics+inauthor:mathur%20d.s.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:04,744 | INFO | [SESSION-e7e62be1] Success: heat and thermodynamics
+2025-12-04 15:24:06,164 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:06,773 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:hydraulic%20machines%20including%20fluidics%20not%20applicable+inauthor:jagadish%20lal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:06,776 | INFO | [SESSION-e7e62be1] Success: hydraulic machines including fluidics not applicable
+2025-12-04 15:24:09,011 | INFO | [SESSION-e7e62be1] Processing: a textbook of surveying and levelling by agor r.
+2025-12-04 15:24:10,872 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:12,201 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20textbook%20of%20surveying%20and%20levelling+inauthor:agor%20r.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:12,205 | INFO | [SESSION-e7e62be1] Success: a textbook of surveying and levelling
+2025-12-04 15:24:13,516 | INFO | [SESSION-e7e62be1] Processing: strength of materials by khurmi r.s.
+2025-12-04 15:24:15,380 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:16,809 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:strength%20of%20materials+inauthor:khurmi%20r.s.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:16,813 | INFO | [SESSION-e7e62be1] Success: strength of materials
+2025-12-04 15:24:18,018 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics i by venkataraman m.k.
+2025-12-04 15:24:19,991 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:21,314 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics%20i+inauthor:venkataraman%20m.k.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:21,318 | INFO | [SESSION-e7e62be1] Success: engineering mathematics i
+2025-12-04 15:24:22,522 | INFO | [SESSION-e7e62be1] Processing: workshop technology part 1 by chapman w.a.j
+2025-12-04 15:24:24,372 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:25,207 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:workshop%20technology%20part%201+inauthor:chapman%20w.a.j&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:25,211 | INFO | [SESSION-e7e62be1] Success: workshop technology part 1
+2025-12-04 15:24:27,027 | INFO | [SESSION-e7e62be1] Processing: power plant engineering by keswari h.b.
+2025-12-04 15:24:28,800 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:29,301 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:power%20plant%20engineering+inauthor:keswari%20h.b.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:29,304 | INFO | [SESSION-e7e62be1] Success: power plant engineering
+2025-12-04 15:24:31,532 | INFO | [SESSION-e7e62be1] Processing: workshop technology part 2 by chapman w.a.j
+2025-12-04 15:24:33,202 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:34,629 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:workshop%20technology%20part%202+inauthor:chapman%20w.a.j&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:34,632 | INFO | [SESSION-e7e62be1] Success: workshop technology part 2
+2025-12-04 15:24:36,037 | INFO | [SESSION-e7e62be1] Processing: engineering metrology by jain r.k.
+2025-12-04 15:24:37,773 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:38,382 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20metrology+inauthor:jain%20r.k.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:38,384 | INFO | [SESSION-e7e62be1] Success: engineering metrology
+2025-12-04 15:24:40,542 | INFO | [SESSION-e7e62be1] Processing: the theory of machines by bevan thomas
+2025-12-04 15:24:42,444 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:43,026 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:the%20theory%20of%20machines+inauthor:bevan%20thomas&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:43,029 | INFO | [SESSION-e7e62be1] Success: the theory of machines
+2025-12-04 15:24:45,044 | INFO | [SESSION-e7e62be1] Processing: applied mechanics and strength of materials by khurmi r.s
+2025-12-04 15:24:47,023 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:47,842 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:applied%20mechanics%20and%20strength%20of%20materials+inauthor:khurmi%20r.s&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:47,845 | INFO | [SESSION-e7e62be1] Success: applied mechanics and strength of materials
+2025-12-04 15:24:49,548 | INFO | [SESSION-e7e62be1] Processing: a course in heat and mass transfer by arora s.c.
+2025-12-04 15:24:51,278 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:51,939 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20course%20in%20heat%20and%20mass%20transfer+inauthor:arora%20s.c.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:51,943 | INFO | [SESSION-e7e62be1] Success: a course in heat and mass transfer
+2025-12-04 15:24:54,053 | INFO | [SESSION-e7e62be1] Processing: basic civil engineering by seashagiri k.k.
+2025-12-04 15:24:55,759 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:24:57,061 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:basic%20civil%20engineering+inauthor:seashagiri%20k.k.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:24:57,065 | INFO | [SESSION-e7e62be1] Success: basic civil engineering
+2025-12-04 15:24:58,557 | INFO | [SESSION-e7e62be1] Processing: an introduction to modern physics by richtmyer
+2025-12-04 15:25:00,090 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:00,744 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:an%20introduction%20to%20modern%20physics+inauthor:richtmyer&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:00,748 | INFO | [SESSION-e7e62be1] Success: an introduction to modern physics
+2025-12-04 15:25:03,062 | INFO | [SESSION-e7e62be1] Processing: fluid mechanics and hydraulics by jagdish lal
+2025-12-04 15:25:04,752 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:06,068 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:fluid%20mechanics%20and%20hydraulics+inauthor:jagdish%20lal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:06,072 | INFO | [SESSION-e7e62be1] Success: fluid mechanics and hydraulics
+2025-12-04 15:25:07,567 | INFO | [SESSION-e7e62be1] Processing: engineering materials by rangwala s.c.
+2025-12-04 15:25:09,208 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:10,576 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20materials+inauthor:rangwala%20s.c.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:10,580 | INFO | [SESSION-e7e62be1] Success: engineering materials
+2025-12-04 15:25:12,071 | INFO | [SESSION-e7e62be1] Processing: physics by halliday david
+2025-12-04 15:25:13,649 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:15,183 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:physics+inauthor:halliday%20david&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:15,186 | INFO | [SESSION-e7e62be1] Success: physics
+2025-12-04 15:25:16,575 | INFO | [SESSION-e7e62be1] Processing: matrics by khanna m.l.
+2025-12-04 15:25:17,891 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:18,460 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:matrics+inauthor:khanna%20m.l.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:18,461 | INFO | [SESSION-e7e62be1] Success: matrics
+2025-12-04 15:25:21,077 | INFO | [SESSION-e7e62be1] Processing: matrices by gupta p.p.
+2025-12-04 15:25:22,563 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:23,172 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:matrices+inauthor:gupta%20p.p.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:23,175 | INFO | [SESSION-e7e62be1] Success: matrices
+2025-12-04 15:25:25,577 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics 1 by vishwanath
+2025-12-04 15:25:27,275 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:28,504 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics%201+inauthor:vishwanath&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:28,508 | INFO | [SESSION-e7e62be1] Success: engineering mathematics 1
+2025-12-04 15:25:30,079 | INFO | [SESSION-e7e62be1] Processing: english for engineers and technologists 1 by humanities and social sciences
+2025-12-04 15:25:32,086 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:33,516 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:english%20for%20engineers%20and%20technologists%201+inauthor:humanities%20and%20social%20sciences&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:33,519 | INFO | [SESSION-e7e62be1] Success: english for engineers and technologists 1
+2025-12-04 15:25:34,583 | INFO | [SESSION-e7e62be1] Processing: surveying and levelling by kanetkar t.p.
+2025-12-04 15:25:36,171 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:37,612 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:surveying%20and%20levelling+inauthor:kanetkar%20t.p.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:37,614 | INFO | [SESSION-e7e62be1] Success: surveying and levelling
+2025-12-04 15:25:39,086 | INFO | [SESSION-e7e62be1] Processing: written communication in english by freeman sarah
+2025-12-04 15:25:41,100 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:42,425 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:written%20communication%20in%20english+inauthor:freeman%20sarah&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:42,429 | INFO | [SESSION-e7e62be1] Success: written communication in english
+2025-12-04 15:25:43,591 | INFO | [SESSION-e7e62be1] Processing: electric circuits by edminister joseph a.
+2025-12-04 15:25:45,810 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:46,522 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:electric%20circuits+inauthor:edminister%20joseph%20a.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:46,526 | INFO | [SESSION-e7e62be1] Success: electric circuits
+2025-12-04 15:25:48,096 | INFO | [SESSION-e7e62be1] Processing: study strategies in english by freeman sarah
+2025-12-04 15:25:51,748 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:52,360 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:study%20strategies%20in%20english+inauthor:freeman%20sarah&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:52,362 | INFO | [SESSION-e7e62be1] Success: study strategies in english
+2025-12-04 15:25:52,601 | INFO | [SESSION-e7e62be1] Processing: engineering mechanics by mclean
+2025-12-04 15:25:54,411 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:55,058 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mechanics+inauthor:mclean&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:55,061 | INFO | [SESSION-e7e62be1] Success: engineering mechanics
+2025-12-04 15:25:57,106 | INFO | [SESSION-e7e62be1] Processing: strengthen your writing by narayanaswami
+2025-12-04 15:25:58,815 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:25:59,289 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:strengthen%20your%20writing+inauthor:narayanaswami&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:25:59,293 | INFO | [SESSION-e7e62be1] Success: strengthen your writing
+2025-12-04 15:26:01,607 | INFO | [SESSION-e7e62be1] Processing: thermodynamics by abbott
+2025-12-04 15:26:03,258 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:04,616 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:thermodynamics+inauthor:abbott&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:04,618 | INFO | [SESSION-e7e62be1] Success: thermodynamics
+2025-12-04 15:26:06,112 | INFO | [SESSION-e7e62be1] Processing: english communications by t.t.t.i
+2025-12-04 15:26:07,785 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:08,469 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:english%20communications+inauthor:t.t.t.i&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:08,473 | INFO | [SESSION-e7e62be1] Success: english communications
+2025-12-04 15:26:10,617 | INFO | [SESSION-e7e62be1] Processing: machine design by holowenko alfred
+2025-12-04 15:26:12,331 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:13,659 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:machine%20design+inauthor:holowenko%20alfred&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:13,661 | INFO | [SESSION-e7e62be1] Success: machine design
+2025-12-04 15:26:15,122 | INFO | [SESSION-e7e62be1] Processing: the complete book of tools and how to use them by david day
+2025-12-04 15:26:16,823 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:18,474 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:the%20complete%20book%20of%20tools%20and%20how%20to%20use%20them+inauthor:david%20day&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:18,477 | INFO | [SESSION-e7e62be1] Success: the complete book of tools and how to use them
+2025-12-04 15:26:19,624 | INFO | [SESSION-e7e62be1] Processing: organic chemistry by finar i.l.
+2025-12-04 15:26:21,066 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:21,606 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:organic%20chemistry+inauthor:finar%20i.l.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:21,609 | INFO | [SESSION-e7e62be1] Success: organic chemistry
+2025-12-04 15:26:24,128 | INFO | [SESSION-e7e62be1] Processing: mechanics of materials by hydon archic
+2025-12-04 15:26:25,931 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:27,223 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:mechanics%20of%20materials+inauthor:hydon%20archic&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:27,227 | INFO | [SESSION-e7e62be1] Success: mechanics of materials
+2025-12-04 15:26:28,628 | INFO | [SESSION-e7e62be1] Processing: science technology and education for prosperity by rama chandra rao
+2025-12-04 15:26:30,575 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:31,126 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:science%20technology%20and%20education%20for%20prosperity+inauthor:rama%20chandra%20rao&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:31,128 | INFO | [SESSION-e7e62be1] Success: science technology and education for prosperity
+2025-12-04 15:26:33,133 | INFO | [SESSION-e7e62be1] Processing: technical information services for developing countries by radhakrishnan s.
+2025-12-04 15:26:35,828 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:37,053 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:technical%20information%20services%20for%20developing%20countries+inauthor:radhakrishnan%20s.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:37,057 | INFO | [SESSION-e7e62be1] Success: technical information services for developing countries
+2025-12-04 15:26:37,637 | INFO | [SESSION-e7e62be1] Processing: pear`s cyclopedia by chriscook
+2025-12-04 15:26:39,756 | WARNING | [SESSION-e7e62be1] Rate Limit hit on 'models/gemini-2.0-flash'. Retrying...
+2025-12-04 15:26:42,141 | INFO | [SESSION-e7e62be1] Processing: text book of organic chemistry by bahl arun
+2025-12-04 15:26:45,458 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:46,020 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:text%20book%20of%20organic%20chemistry+inauthor:bahl%20arun&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:46,022 | INFO | [SESSION-e7e62be1] Success: text book of organic chemistry
+2025-12-04 15:26:46,646 | INFO | [SESSION-e7e62be1] Processing: pear`s cyclopedia by chriscook
+2025-12-04 15:26:50,057 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:50,479 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:pear%60s%20cyclopedia+inauthor:chriscook&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:50,482 | INFO | [SESSION-e7e62be1] Success: pear`s cyclopedia
+2025-12-04 15:26:51,151 | INFO | [SESSION-e7e62be1] Processing: kent`s mechanical engineers handbook by colin carmicheal
+2025-12-04 15:26:53,136 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:53,756 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:kent%60s%20mechanical%20engineers%20handbook+inauthor:colin%20carmicheal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:53,759 | INFO | [SESSION-e7e62be1] Success: kent`s mechanical engineers handbook
+2025-12-04 15:26:55,656 | INFO | [SESSION-e7e62be1] Processing: thermal engineering by ballaney p.l.
+2025-12-04 15:26:57,295 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:26:57,850 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:thermal%20engineering+inauthor:ballaney%20p.l.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:26:57,852 | INFO | [SESSION-e7e62be1] Success: thermal engineering
+2025-12-04 15:27:00,161 | INFO | [SESSION-e7e62be1] Processing: communication in english for technical students by curriculum in english for tech. stud.
+2025-12-04 15:27:01,812 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:03,187 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:communication%20in%20english%20for%20technical%20students+inauthor:curriculum%20in%20english%20for%20tech.%20stud.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:03,190 | INFO | [SESSION-e7e62be1] Success: communication in english for technical students
+2025-12-04 15:27:04,661 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics i by vishwanath
+2025-12-04 15:27:06,506 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:07,703 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics%20i+inauthor:vishwanath&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:07,706 | INFO | [SESSION-e7e62be1] Success: engineering mathematics i
+2025-12-04 15:27:09,165 | INFO | [SESSION-e7e62be1] Processing: linear algebra by hoffman kenneth
+2025-12-04 15:27:11,020 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:11,624 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:linear%20algebra+inauthor:hoffman%20kenneth&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:11,628 | INFO | [SESSION-e7e62be1] Success: linear algebra
+2025-12-04 15:27:13,666 | INFO | [SESSION-e7e62be1] Processing: basic mechanical engineering by govindan k.r.
+2025-12-04 15:27:15,319 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:16,555 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:basic%20mechanical%20engineering+inauthor:govindan%20k.r.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:16,558 | INFO | [SESSION-e7e62be1] Success: basic mechanical engineering
+2025-12-04 15:27:18,170 | INFO | [SESSION-e7e62be1] Processing: differential eqations by gupta etc
+2025-12-04 15:27:19,924 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:20,423 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:differential%20eqations+inauthor:gupta%20etc&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:20,425 | INFO | [SESSION-e7e62be1] Success: differential eqations
+2025-12-04 15:27:22,673 | INFO | [SESSION-e7e62be1] Processing: a text book of practical mathematics i by prasad i.b.
+2025-12-04 15:27:24,233 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:24,834 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20text%20book%20of%20practical%20mathematics%20i+inauthor:prasad%20i.b.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:24,840 | INFO | [SESSION-e7e62be1] Success: a text book of practical mathematics i
+2025-12-04 15:27:27,178 | INFO | [SESSION-e7e62be1] Processing: a text book of optics by brijlal
+2025-12-04 15:27:28,928 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:29,547 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20text%20book%20of%20optics+inauthor:brijlal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:29,550 | INFO | [SESSION-e7e62be1] Success: a text book of optics
+2025-12-04 15:27:31,683 | INFO | [SESSION-e7e62be1] Processing: electricity and magnetism by brijlal
+2025-12-04 15:27:33,341 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:33,847 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:electricity%20and%20magnetism+inauthor:brijlal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:33,849 | INFO | [SESSION-e7e62be1] Success: electricity and magnetism
+2025-12-04 15:27:36,186 | INFO | [SESSION-e7e62be1] Processing: a text book of practical mathematics ii by prasad i.b.
+2025-12-04 15:27:38,027 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:38,576 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20text%20book%20of%20practical%20mathematics%20ii+inauthor:prasad%20i.b.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:38,579 | INFO | [SESSION-e7e62be1] Success: a text book of practical mathematics ii
+2025-12-04 15:27:40,691 | INFO | [SESSION-e7e62be1] Processing: modern physics by rajam j.b.
+2025-12-04 15:27:42,353 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:43,623 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:modern%20physics+inauthor:rajam%20j.b.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:43,625 | INFO | [SESSION-e7e62be1] Success: modern physics
+2025-12-04 15:27:45,196 | INFO | [SESSION-e7e62be1] Processing: technical mathematics by viswanath
+2025-12-04 15:27:46,753 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:48,071 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:technical%20mathematics+inauthor:viswanath&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:48,074 | INFO | [SESSION-e7e62be1] Success: technical mathematics
+2025-12-04 15:27:49,701 | INFO | [SESSION-e7e62be1] Processing: principles of physics by subramanian
+2025-12-04 15:27:51,364 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:51,974 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:principles%20of%20physics+inauthor:subramanian&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:51,977 | INFO | [SESSION-e7e62be1] Success: principles of physics
+2025-12-04 15:27:54,204 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics by shanti narayan
+2025-12-04 15:27:55,973 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:27:56,583 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics+inauthor:shanti%20narayan&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:27:56,587 | INFO | [SESSION-e7e62be1] Success: engineering mathematics
+2025-12-04 15:27:58,706 | INFO | [SESSION-e7e62be1] Processing: a text book of engineering physics by theraja b.l.
+2025-12-04 15:28:00,325 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:00,884 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:a%20text%20book%20of%20engineering%20physics+inauthor:theraja%20b.l.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:00,888 | INFO | [SESSION-e7e62be1] Success: a text book of engineering physics
+2025-12-04 15:28:03,211 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics ii by venkataraman m.k.
+2025-12-04 15:28:05,010 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:05,615 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics%20ii+inauthor:venkataraman%20m.k.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:05,619 | INFO | [SESSION-e7e62be1] Success: engineering mathematics ii
+2025-12-04 15:28:07,716 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics-ii by krishnan lal
+2025-12-04 15:28:10,160 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:10,715 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics-ii+inauthor:krishnan%20lal&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:10,718 | INFO | [SESSION-e7e62be1] Success: engineering mathematics-ii
+2025-12-04 15:28:12,221 | INFO | [SESSION-e7e62be1] Processing: engineering mathematics by venkataraman m.k.
+2025-12-04 15:28:14,406 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:15,017 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:engineering%20mathematics+inauthor:venkataraman%20m.k.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:15,022 | INFO | [SESSION-e7e62be1] Success: engineering mathematics
+2025-12-04 15:28:16,724 | INFO | [SESSION-e7e62be1] Processing: advanced mathematics for engineers by myskies a.d.
+2025-12-04 15:28:18,347 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:18,821 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:advanced%20mathematics%20for%20engineers+inauthor:myskies%20a.d.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:18,825 | INFO | [SESSION-e7e62be1] Success: advanced mathematics for engineers
+2025-12-04 15:28:21,227 | INFO | [SESSION-e7e62be1] Processing: theory and problems of electric circuits by edminister joseph a.
+2025-12-04 15:28:22,909 | DEBUG | Starting new HTTPS connection (1): www.googleapis.com:443
+2025-12-04 15:28:24,033 | DEBUG | https://www.googleapis.com:443 "GET /books/v1/volumes?q=intitle:theory%20and%20problems%20of%20electric%20circuits+inauthor:edminister%20joseph%20a.&maxResults=1 HTTP/1.1" 200 None
+2025-12-04 15:28:24,045 | INFO | [SESSION-e7e62be1] Success: theory and problems of electric circuits
+2025-12-04 15:28:25,732 | INFO | [SESSION-e7e62be1] Processing: vector analysis by khanna m.l. & s.k. pundir

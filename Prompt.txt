@@ -1,0 +1,26 @@
+prompt = f"""
+            You are a Bibliographic Data Enrichment Engine for a Technical University Library.
+            I will provide a list of {len(batch)} books with unique string IDs.
+            
+            YOUR TASK:
+            For each book, analyze the Title and Author to infer its technical contents.
+            
+            OUTPUT REQUIREMENTS:
+            Return a single, valid JSON object where:
+            1. The dictionary KEYS are exactly the "ID" strings provided in the input (Do not modify them).
+            2. The VALUES are objects containing:
+               - "description": A dense, 2-3-sentence technical summary (approx 25-80 words). Focus on what the student will learn (e.g., "Covers thermodynamics, entropy, and heat transfer...").
+               - "tags": A list of 5-8 specific domain keywords that will help us recognise the book's content, offerings, and topics to read easily (e.g., "Fluid Mechanics", "Navier-Stokes", "Aerodynamics").
+            [Note: Avoid reusing the words already present in the title of the book, and author, because we are building a search efficient system, and they are already searchable.]
+            
+            INPUT DATA:
+            {batch_text}
+            
+            STRICT JSON FORMAT EXAMPLE:
+            {{
+              "engineering drawing | bhatt...": {{
+                "description": "A comprehensive guide to orthographic projections and isometric views...",
+                "tags": ["Orthographic", "Isometric", "CAD", "Drafting"]
+              }}
+            }}
+            """

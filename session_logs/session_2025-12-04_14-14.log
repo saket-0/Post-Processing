@@ -1,0 +1,174 @@
+
+========================================
+STARTING SESSION: SESSION-e5c0a9c6
+========================================
+2025-12-04 14:14:58,020 | INFO | [SESSION-e5c0a9c6] Processing: engineering drawing by bhatt n.d.
+2025-12-04 14:14:58,768 | ERROR | [SESSION-e5c0a9c6] API Error for 'engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:02,525 | INFO | [SESSION-e5c0a9c6] Processing: a first year engineering drawing by parkinson a.c.
+2025-12-04 14:15:03,059 | ERROR | [SESSION-e5c0a9c6] API Error for 'a first year engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:07,029 | INFO | [SESSION-e5c0a9c6] Processing: engineering drawing by bhatt n.d.
+2025-12-04 14:15:07,249 | ERROR | [SESSION-e5c0a9c6] API Error for 'engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:11,533 | INFO | [SESSION-e5c0a9c6] Processing: a first year engineering drawing by parkinson a.c.
+2025-12-04 14:15:11,801 | ERROR | [SESSION-e5c0a9c6] API Error for 'a first year engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:16,037 | INFO | [SESSION-e5c0a9c6] Processing: engineering drawing by bhatt n.d.
+2025-12-04 14:15:16,315 | ERROR | [SESSION-e5c0a9c6] API Error for 'engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:16,316 | CRITICAL | [SESSION-e5c0a9c6] FINAL FAILURE: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:20,541 | INFO | [SESSION-e5c0a9c6] Processing: a first year engineering drawing by parkinson a.c.
+2025-12-04 14:15:20,742 | ERROR | [SESSION-e5c0a9c6] API Error for 'a first year engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:20,744 | CRITICAL | [SESSION-e5c0a9c6] FINAL FAILURE: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+2025-12-04 14:15:25,041 | INFO | [SESSION-e5c0a9c6] Processing: engineering drawing by verma c.l.
+2025-12-04 14:15:25,242 | ERROR | [SESSION-e5c0a9c6] API Error for 'engineering drawing': 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+Traceback (most recent call last):
+  File "/Users/deep/Desktop/USP/main.py", line 85, in process_single_book
+    response = model.generate_content(prompt)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/generativeai/generative_models.py", line 331, in generate_content
+    response = self._client.generate_content(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/generative_service/client.py", line 835, in generate_content
+    response = rpc(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/gapic_v1/method.py", line 131, in __call__
+    return wrapped_func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 294, in retry_wrapped_func
+    return retry_target(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 156, in retry_target
+    next_sleep = _retry_error_helper(
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_base.py", line 214, in _retry_error_helper
+    raise final_exc from source_exc
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/retry/retry_unary.py", line 147, in retry_target
+    result = target()
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/timeout.py", line 130, in func_with_timeout
+    return func(*args, **kwargs)
+  File "/Users/deep/.pyenv/versions/3.9.6/lib/python3.9/site-packages/google/api_core/grpc_helpers.py", line 77, in error_remapped_callable
+    raise exceptions.from_grpc_error(exc) from exc
+google.api_core.exceptions.NotFound: 404 models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
