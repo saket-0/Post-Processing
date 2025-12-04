@@ -24,15 +24,17 @@ class DataManager:
         if not os.path.exists(INPUT_FILE):
             raise FileNotFoundError(f"Input file {INPUT_FILE} not found!")
         
-        # --- LOADING ALL DATE CANDIDATES ---
+        # --- LOADING ALL NECESSARY COLUMNS ---
         cols = [
-            'full_title_245', 'author_main_100a', 
-            'edition_250a',         # Priority 1
-            'pub_year_008',         # Priority 2
-            'date_entered_008',     # Priority 3 (Added Entry)
-            'bill_date_952_b',      # Priority 4
-            'date_acquired_952d',   # Priority 5
-            'date_last_seen_952r'   # Priority 6
+            'full_title_245', 
+            'author_main_100a', 
+            'co_authors_700a',      # <-- NEW: Added for deduplication
+            'edition_250a',         
+            'pub_year_008',         
+            'date_entered_008',     
+            'bill_date_952_b',      
+            'date_acquired_952d',   
+            'date_last_seen_952r'   
         ]
         
         # Load with string types to preserve format
@@ -41,8 +43,20 @@ class DataManager:
         # Helper to clean text
         def clean(val): return str(val).strip().replace('nan', '')
 
-        # We construct a "Rich Fingerprint" that contains all the raw data we need
-        # We separate fields with a unique delimiter '|||' to parse them easily later
+        # --- DEDUPLICATION LOGIC (4-part key: Title, Author, Co-Author, Edition) ---
+        self.df['dedup_key'] = (
+            self.df['full_title_245'].apply(clean) + "|||" + 
+            self.df['author_main_100a'].apply(clean) + "|||" + 
+            self.df['co_authors_700a'].apply(clean) + "|||" + # <-- NEW: Included Co-Authors
+            self.df['edition_250a'].apply(clean)
+        )
+        
+        # Filter the DataFrame to keep only one record per unique book
+        self.df.drop_duplicates(subset=['dedup_key'], keep='first', inplace=True)
+        self.df.drop(columns=['dedup_key'], inplace=True) 
+
+        # --- RICH FINGERPRINT CREATION (8-part key for worker logic and persistence) ---
+        # The structure used by the worker for splitting/provenance must be maintained
         self.df['fingerprint'] = (
             self.df['full_title_245'].apply(clean) + "|||" + 
             self.df['author_main_100a'].apply(clean) + "|||" + 
@@ -54,7 +68,7 @@ class DataManager:
             self.df['date_last_seen_952r'].apply(clean)
         )
         
-        # Deduplicate based on this rich data
+        # Extract unique fingerprints from the pre-deduplicated DataFrame
         self.unique_fingerprints = [f for f in self.df['fingerprint'].unique() if len(f) > 10]
 
     def _load_progress(self):
@@ -90,7 +104,7 @@ class DataManager:
     def export_final_csv(self):
         full_df = pd.read_csv(INPUT_FILE, dtype=str)
         
-        # Re-create fingerprint logic to match keys
+        # Re-create the 8-part fingerprint logic to match keys
         def clean(val): return str(val).strip().replace('nan', '')
         
         full_df['fingerprint'] = (
@@ -117,7 +131,7 @@ class DataManager:
                 'is_outdated': data.get('is_outdated', False)
             })
             
-        enrich_df = pd.DataFrame(enrichment_list)
+        enrich_df = pd.DataFrame(enrich_list)
         final_df = pd.merge(full_df, enrich_df, on='fingerprint', how='left')
         final_df.drop(columns=['fingerprint'], inplace=True)
         final_df.to_csv(OUTPUT_FILE, index=False)
