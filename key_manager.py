@@ -53,7 +53,6 @@ class KeyManager:
         
         with self.lock:
             now = time.time()
-            best_key = None
             
             for k, key_obj in self.keys.items():
                 if key_obj.status == KeyStatus.DEAD:
@@ -103,7 +102,7 @@ class KeyManager:
                     "key": k[:6] + "...", 
                     "status": v.status.value, 
                     "reqs": v.total_requests,
-                    "errors": v.errors  # <--- THIS WAS MISSING
+                    "errors": v.errors  # <--- THIS LINE WAS LIKELY MISSING OR INCORRECT BEFORE
                 } 
                 for k, v in self.keys.items()
             ]

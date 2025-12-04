@@ -24,3 +24,60 @@ prompt = f"""
               }}
             }}
             """
+
+
+
+
+# ... inside worker_task ...
+
+            # Construct Prompt
+            # Format: "ID: 'unique_string' -> Book: Title (Author: Name | Edition: ... | Year: ...)"
+            batch_text_list = []
+            for fp in batch:
+                parts = fp.split('|')
+                title = parts[0] if len(parts) > 0 else "Unknown"
+                author = parts[1] if len(parts) > 1 else "Unknown"
+                edition = parts[2] if len(parts) > 2 else "Unknown"
+                year = parts[3] if len(parts) > 3 else "Unknown"
+                batch_text_list.append(f"ID: '{fp}' -> Book: {title} (Author: {author} | Edition: {edition} | Year: {year})")
+
+            batch_text = "\n".join(batch_text_list)
+
+            prompt = f"""
+            You are a Bibliographic Data Enrichment Engine for a Technical University Library.
+            I will provide a list of {len(batch)} books with unique string IDs.
+            
+            YOUR TASK:
+            Analyze the Title, Author, Edition, and Year (current year is 2025) to infer technical content and current-day relevance.
+            
+            OUTPUT REQUIREMENTS:
+            Return a single, valid JSON object where:
+            1. The dictionary KEYS are exactly the "ID" strings provided in the input (Do not modify them).
+            2. The VALUES are objects containing these EXACT fields:
+               
+               [CONTENT FIELDS]
+               - "description": A dense, 2-3-sentence technical summary (approx 25-80 words). Focus on specific concepts the student will learn (e.g., "Covers thermodynamics, entropy, and heat transfer...").
+               - "tags": A list of 5-8 specific domain keywords to aid search discovery. [Note: Avoid reusing words already present in the Title/Author].
+
+               [SMART LIBRARIAN FIELDS]
+               - "critical_review": A 1-sentence judgment on the book's utility in 2025. Explicitly mention if the edition is old or the technology is deprecated (e.g., "Refers to Python 2.7" or "Predates the iPhone").
+               - "is_outdated": Boolean (true if the technology or edition is considered obsolete today).
+               - "scores": An object with integer ratings (1-10):
+                    - "relevance": (1=Obsolete/History, 10=Essential Modern Standard).
+                    - "readability": (1=Dense/Research Paper, 10=Beginner Friendly/Novel-like).
+                    - "depth": (1=Surface/Intro, 10=Deep/Specialized).
+            
+            INPUT DATA:
+            {batch_text}
+            
+            STRICT JSON FORMAT EXAMPLE:
+            {{
+              "engineering drawing | bhatt...": {{
+                "description": "A comprehensive guide to orthographic projections and isometric views, covering standard conventions in engineering graphics. It details the geometry of solids and machine parts for manufacturing.",
+                "tags": ["Orthographic", "Isometric", "CAD", "Drafting", "Geometry"],
+                "critical_review": "A classic foundational text, though modern students may prefer texts with integrated AutoCAD examples.",
+                "is_outdated": false,
+                "scores": {{ "relevance": 7, "readability": 6, "depth": 5 }}
+              }}
+            }}
+            """
