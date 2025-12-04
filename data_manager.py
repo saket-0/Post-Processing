@@ -5,12 +5,17 @@ import shutil
 import threading
 import queue
 from config import INPUT_FILE, PROGRESS_FILE, OUTPUT_FILE
+from models import BookGroup, parse_library_date
 
 class DataManager:
     def __init__(self):
-        self.df = None
-        self.unique_fingerprints = []
-        self.processed_data = {}
+        self.full_df = None
+        self.unique_groups = {} # Map[content_hash, BookGroup]
+        self.hash_map = {}      # Map[content_hash, List[original_indices]]
+        
+        self.processed_hashes = set()
+        self.results_cache = {} # Map[content_hash, ResultDict]
+        
         self.result_queue = queue.Queue()
         self.stop_event = threading.Event()
         self.writer_thread = threading.Thread(target=self._writer_loop, daemon=True)
@@ -24,75 +29,98 @@ class DataManager:
         if not os.path.exists(INPUT_FILE):
             raise FileNotFoundError(f"Input file {INPUT_FILE} not found!")
         
-        # --- LOADING ALL NECESSARY COLUMNS ---
-        cols = [
-            'full_title_245', 
-            'author_main_100a', 
-            'co_authors_700a',      # <-- NEW: Added for deduplication
-            'edition_250a',         
-            'pub_year_008',         
-            'date_entered_008',     
-            'bill_date_952_b',      
-            'date_acquired_952d',   
-            'date_last_seen_952r'   
-        ]
+        print("Loading CSV Data...")
+        self.full_df = pd.read_csv(INPUT_FILE, dtype=str).fillna('')
         
-        # Load with string types to preserve format
-        self.df = pd.read_csv(INPUT_FILE, usecols=lambda c: c in cols, dtype=str)
+        # --- ROBUST GROUPING STRATEGY ---
+        print("Grouping duplicates to optimize AI usage...")
         
-        # Helper to clean text
-        def clean(val): return str(val).strip().replace('nan', '')
+        for idx, row in self.full_df.iterrows():
+            # 1. Create a temporary group to generate the hash
+            t = row.get('full_title_245', '')
+            a = row.get('author_main_100a', '')
+            c = row.get('co_authors_700a', '')
+            
+            # Using our model to generate consistent hash
+            temp_group = BookGroup(t, a, c)
+            h = temp_group.content_hash
+            
+            # 2. Map this row index to the hash
+            if h not in self.hash_map:
+                self.hash_map[h] = []
+                self.unique_groups[h] = temp_group # Store the first one as representative
+            
+            self.hash_map[h].append(idx)
+            
+            # 3. Refine the Representative (Optional but good for data quality)
+            # We try to find the best edition or oldest date among the duplicates
+            # to give the AI the most complete picture.
+            existing_group = self.unique_groups[h]
+            
+            # Check for better edition info
+            curr_ed = str(row.get('edition_250a', ''))
+            if len(curr_ed) > len(existing_group.best_edition):
+                existing_group.best_edition = curr_ed
+                
+            # Check for older date (often implies original publication)
+            # We check pub_year, bill_date, acquired_date
+            dates = [
+                parse_library_date(row.get('pub_year_008')),
+                parse_library_date(row.get('bill_date_952_b')),
+                parse_library_date(row.get('date_acquired_952d'))
+            ]
+            valid_dates = [d for d in dates if d]
+            if valid_dates:
+                local_min = min(valid_dates)
+                if existing_group.oldest_date is None or local_min < existing_group.oldest_date:
+                    existing_group.oldest_date = local_min
 
-        # --- DEDUPLICATION LOGIC (4-part key: Title, Author, Co-Author, Edition) ---
-        self.df['dedup_key'] = (
-            self.df['full_title_245'].apply(clean) + "|||" + 
-            self.df['author_main_100a'].apply(clean) + "|||" + 
-            self.df['co_authors_700a'].apply(clean) + "|||" + # <-- NEW: Included Co-Authors
-            self.df['edition_250a'].apply(clean)
-        )
-        
-        # Filter the DataFrame to keep only one record per unique book
-        self.df.drop_duplicates(subset=['dedup_key'], keep='first', inplace=True)
-        self.df.drop(columns=['dedup_key'], inplace=True) 
-
-        # --- RICH FINGERPRINT CREATION (8-part key for worker logic and persistence) ---
-        # The structure used by the worker for splitting/provenance must be maintained
-        self.df['fingerprint'] = (
-            self.df['full_title_245'].apply(clean) + "|||" + 
-            self.df['author_main_100a'].apply(clean) + "|||" + 
-            self.df['edition_250a'].apply(clean) + "|||" + 
-            self.df['pub_year_008'].apply(clean) + "|||" +
-            self.df['date_entered_008'].apply(clean) + "|||" +
-            self.df['bill_date_952_b'].apply(clean) + "|||" +
-            self.df['date_acquired_952d'].apply(clean) + "|||" +
-            self.df['date_last_seen_952r'].apply(clean)
-        )
-        
-        # Extract unique fingerprints from the pre-deduplicated DataFrame
-        self.unique_fingerprints = [f for f in self.df['fingerprint'].unique() if len(f) > 10]
+        print(f"Optimization: Compressed {len(self.full_df)} rows into {len(self.unique_groups)} unique API calls.")
 
     def _load_progress(self):
         if os.path.exists(PROGRESS_FILE):
             with open(PROGRESS_FILE, 'r') as f:
-                try: self.processed_data = json.load(f)
+                try: 
+                    self.results_cache = json.load(f)
+                    self.processed_hashes = set(self.results_cache.keys())
                 except: pass
 
     def get_pending_batches(self, batch_size):
-        pending = [fp for fp in self.unique_fingerprints if fp not in self.processed_data]
-        return [pending[i:i + batch_size] for i in range(0, len(pending), batch_size)]
+        # Return list of BookGroup objects for hashes that aren't processed
+        pending_hashes = [h for h in self.unique_groups if h not in self.processed_hashes]
+        
+        batches = []
+        current_batch = []
+        for h in pending_hashes:
+            current_batch.append(self.unique_groups[h])
+            if len(current_batch) >= batch_size:
+                batches.append(current_batch)
+                current_batch = []
+        if current_batch:
+            batches.append(current_batch)
+            
+        return batches
 
     def submit_result(self, batch_result_dict):
+        """
+        batch_result_dict: { 'hash_id': {data...}, ... }
+        """
         self.result_queue.put(batch_result_dict)
 
     def _writer_loop(self):
         while not self.stop_event.is_set() or not self.result_queue.empty():
             try:
                 batch = self.result_queue.get(timeout=1)
-                self.processed_data.update(batch)
                 
+                # Update cache
+                self.results_cache.update(batch)
+                self.processed_hashes.update(batch.keys())
+                
+                # Persist to disk (Resume capability)
                 temp = PROGRESS_FILE + ".tmp"
-                with open(temp, 'w') as f: json.dump(self.processed_data, f, indent=2)
+                with open(temp, 'w') as f: json.dump(self.results_cache, f, indent=2)
                 shutil.move(temp, PROGRESS_FILE)
+                
                 self.result_queue.task_done()
             except queue.Empty: continue
             except Exception as e: print(f"WRITE ERROR: {e}")
@@ -102,36 +130,36 @@ class DataManager:
         self.writer_thread.join()
 
     def export_final_csv(self):
-        full_df = pd.read_csv(INPUT_FILE, dtype=str)
+        print("Mapping enriched data back to original dataset...")
         
-        # Re-create the 8-part fingerprint logic to match keys
-        def clean(val): return str(val).strip().replace('nan', '')
+        # Create list to hold new columns
+        enrichment_data = {} # Map[row_index, dict_of_new_values]
         
-        full_df['fingerprint'] = (
-            full_df['full_title_245'].apply(clean) + "|||" + 
-            full_df['author_main_100a'].apply(clean) + "|||" + 
-            full_df['edition_250a'].apply(clean) + "|||" + 
-            full_df['pub_year_008'].apply(clean) + "|||" +
-            full_df['date_entered_008'].apply(clean) + "|||" +
-            full_df['bill_date_952_b'].apply(clean) + "|||" +
-            full_df['date_acquired_952d'].apply(clean) + "|||" +
-            full_df['date_last_seen_952r'].apply(clean)
-        )
+        # Iterate through our results and broadcast to original rows
+        for content_hash, result in self.results_cache.items():
+            if content_hash in self.hash_map:
+                row_indices = self.hash_map[content_hash]
+                
+                # Flatten the AI result
+                flat_res = {
+                    'ai_summary': result.get('description', ''),
+                    'ai_tags': json.dumps(result.get('tags', [])),
+                    'ai_critical_review': result.get('critical_review', ''),
+                    'ai_score_relevance': result.get('scores', {}).get('relevance', 0),
+                    'ai_score_readability': result.get('scores', {}).get('readability', 0),
+                    'ai_score_depth': result.get('scores', {}).get('depth', 0),
+                    'is_outdated': result.get('is_outdated', False)
+                }
+                
+                for idx in row_indices:
+                    enrichment_data[idx] = flat_res
         
-        enrich_list = []
-        for fp, data in self.processed_data.items():
-            enrich_list.append({
-                'fingerprint': fp,
-                'ai_summary': data.get('summary', ''),
-                'ai_tags': json.dumps(data.get('tags', [])),
-                'ai_critical_review': data.get('critical_review', ''),
-                'score_relevance': data.get('scores', {}).get('relevance', 0),
-                'score_readability': data.get('scores', {}).get('readability', 0),
-                'score_depth': data.get('scores', {}).get('depth', 0),
-                'is_outdated': data.get('is_outdated', False)
-            })
-            
-        enrich_df = pd.DataFrame(enrich_list)
-        final_df = pd.merge(full_df, enrich_df, on='fingerprint', how='left')
-        final_df.drop(columns=['fingerprint'], inplace=True)
+        # Convert dictionary to DataFrame
+        enrich_df = pd.DataFrame.from_dict(enrichment_data, orient='index')
+        
+        # Join with original dataframe
+        # We ensure indices align
+        final_df = self.full_df.join(enrich_df)
+        
         final_df.to_csv(OUTPUT_FILE, index=False)
+        print(f"Export complete: {OUTPUT_FILE}")

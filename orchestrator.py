@@ -9,7 +9,7 @@ from concurrent.futures import ThreadPoolExecutor
 import config
 from data_manager import DataManager
 from key_manager import KeyManager
-from ui_manager import Dashboard  # <--- Using our new UI
+from ui_manager import Dashboard
 from autonomous_worker import worker_task
 from rich.live import Live
 
@@ -27,28 +27,33 @@ def main():
     key_mgr = KeyManager(config.KEYS_FILE)
     
     # 2. Prepare Data
+    # The manager now returns groups, not raw fingerprints
     pending_batches = data_mgr.get_pending_batches(config.BATCH_SIZE)
-    total_items = len(data_mgr.unique_fingerprints)
-    current_completed = len(data_mgr.processed_data)
+    
+    # --- FIX: Use 'unique_groups' instead of 'unique_fingerprints' ---
+    total_items = len(data_mgr.unique_groups) 
+    
+    # --- FIX: Use 'results_cache' instead of 'processed_data' ---
+    current_completed = len(data_mgr.results_cache)
     
     # 3. Initialize Dashboard
     dashboard = Dashboard(total_items)
     dashboard.update_progress(current_completed)
     dashboard.log(f"Session Started: {SESSION_ID}", "cyan")
-    dashboard.log(f"Loaded {len(pending_batches)} batches", "green")
+    dashboard.log(f"Loaded {len(pending_batches)} batches (Groups)", "green")
 
     # 4. Start Worker Swarm
-    MAX_WORKERS = 12 # Higher than key count to allow for waiting/retrying
+    MAX_WORKERS = 12 
     
-    with Live(refresh_per_second=4, screen=True) as live: # screen=True makes it FULL SCREEN
+    with Live(refresh_per_second=4, screen=True) as live:
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
             futures = []
             
             for batch in pending_batches:
+                # 'batch' is now a list of BookGroup objects
                 future = executor.submit(worker_task, batch, key_mgr, data_mgr)
                 futures.append(future)
                 
-                # Update UI periodically during submission
                 if len(futures) % 10 == 0:
                     live.update(dashboard.get_layout(key_mgr.get_stats(), active_workers_count=len(futures)))
 
@@ -56,8 +61,8 @@ def main():
             
             # 5. Monitoring Loop
             while any(not f.done() for f in futures):
-                # Fetch fresh stats
-                current_completed = len(data_mgr.processed_data)
+                # --- FIX: Fetch fresh stats from 'results_cache' ---
+                current_completed = len(data_mgr.results_cache)
                 active_count = sum(1 for f in futures if not f.done())
                 
                 # Update Dashboard Data
