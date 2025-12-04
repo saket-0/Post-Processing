@@ -5,56 +5,117 @@ import logging
 import random
 import re
 from config import PREFERRED_MODELS, RATE_LIMIT_DELAY
+from datetime import datetime, date 
 
 # --- DATE PARSER ---
 def parse_library_date(date_str):
+    """
+    Parses various date formats from library data into a datetime.date object.
+    This function prioritizes finding a day/month/year (DD/MM/YYYY) for accuracy,
+    and defaults to Jan 1st for year-only formats to allow comparison.
+    
+    Returns: datetime.date object or None.
+    """
     if not date_str: return None
-    s = str(date_str).strip().upper()
-    if s in ['NONE', 'NAN', 'NULL', 'UNKNOWN', '', '0']: return None
+    s = str(date_str).strip().upper().replace('N/A', '')
+    # Check for known placeholders and empty strings
+    if s in ['NONE', 'NAN', 'NULL', 'UNKNOWN', '', '0', 'YYYY', 'MMDD', '0000', '000000']: return None
     
-    # ISO Format
-    match_iso = re.search(r'(19|20)\d{2}', s)
-    if match_iso: return match_iso.group(0)
+    # 1. ISO Format (YYYY)
+    match_iso_year = re.search(r'^(19|20)\d{2}$', s)
+    if match_iso_year: 
+        try: return date(int(match_iso_year.group(0)), 1, 1) # Use Jan 1 for year-only dates
+        except: pass
     
-    # 6-digit Compact (YYMMDD) - MARC Standard
+    # 2. 6-digit Compact (YYMMDD) - MARC Standard
+    # Example: 211207 -> 2021/12/07 (Dec 7, 2021)
     if len(s) == 6 and s.isdigit():
-        yy = int(s[:2])
-        if 1 <= int(s[2:4]) <= 12 and 1 <= int(s[4:]) <= 31:
-            return f"19{yy:02d}" if yy > 50 else f"20{yy:02d}"
+        try:
+            yy = int(s[:2])
+            month = int(s[2:4])
+            day = int(s[4:])
             
-    # Short Format D/M/YY
-    match_short = re.search(r'\d{1,2}[/-]\d{1,2}[/-](\d{2,4})', s)
+            # MARC Heuristic: YY 00-50 -> 2000s, YY 51-99 -> 1900s
+            year = 1900 + yy if yy > 50 else 2000 + yy
+            
+            # Basic validation
+            if 1 <= month <= 12 and 1 <= day <= 31:
+                # Use datetime to ensure the date is valid (e.g., handles 2/30)
+                return date(year, month, day)
+        except ValueError:
+            # Catches invalid dates like 200230 (Feb 30)
+            pass
+        except: 
+            pass
+            
+    # 3. Short Format D/M/YY or DD/MM/YYYY
+    match_short = re.match(r'(\d{1,2})[/-](\d{1,2})[/-](\d{2,4})', s)
     if match_short:
-        y_part = match_short.group(1)
-        if len(y_part) == 4: return y_part
-        if len(y_part) == 2: return f"19{y_part}" if int(y_part) > 50 else f"20{y_part}"
+        try:
+            day, month, y_part = map(int, match_short.groups())
+            if len(str(y_part)) == 2:
+                # Heuristic for 20th vs 21st century
+                year = 1900 + y_part if y_part > 50 else 2000 + y_part
+            else:
+                year = y_part
+
+            # Swap day/month if month > 12 and day <= 12 (assuming common DD/MM/YYYY format)
+            if month > 12 and day <= 12:
+                 day, month = month, day
+            
+            return date(year, month, day)
+        except: pass
+
+    return None
+
+def find_oldest_date(date_candidates):
+    """
+    Parses a list of raw date strings and returns the oldest valid date object.
+    """
+    valid_dates = []
+    for raw_date in date_candidates:
+        d = parse_library_date(raw_date)
+        if d:
+            valid_dates.append(d)
+    
+    if valid_dates:
+        return min(valid_dates)
     return None
 
 def resolve_provenance(parts):
     """
-    Returns ONLY the raw Date/Edition string. No labels.
+    Determines the single most efficient provenance context (Edition or Oldest Date) 
+    based on the user's priority rules.
+    
+    Priority 1: Edition (parts[2])
+    Priority 2: Oldest of (PubYear (parts[3]), BillDate (parts[5]), DateAcquired (parts[6]))
+    
+    Returns: A formatted string (e.g., "(Ed. 5th Edition)" or "(01/01/1975)") or None.
     """
-    # Indices from data_manager.py:
-    # 0:Title, 1:Author, 2:Edition, 3:PubYear, 4:Added, 5:Bill, 6:Acq, 7:Seen
+    # Fingerprint structure: 
+    # 0:Title, 1:Author, 2:Edition, 3:PubYear, 4:DateEntered, 5:BillDate, 6:DateAcquired, 7:DateLastSeen
     
     p_edition = parts[2] if len(parts) > 2 else ""
     
-    # Priority 1: Edition (If valid text)
-    if p_edition and len(p_edition) > 1 and p_edition.upper() not in ['NONE', 'NAN']:
-        return p_edition # e.g., "5th Edition"
+    # --- PRIORITY 1: EDITION ---
+    edition = p_edition.strip()
+    if edition and len(edition) > 1 and edition.upper() not in ['NONE', 'NAN', 'NULL', 'UNKNOWN', '0']:
+        return f"(Ed. {edition})"
     
-    # Priority 2-5: Check Dates (Removed 'Last Seen' as it is misleading)
+    # --- PRIORITY 2: OLDEST DATE ---
+    # The list of fields to check for the oldest date.
+    # Excludes 'Date Entered' (index 4) and 'Date Last Seen' (index 7).
     date_candidates = [
-        parts[3] if len(parts)>3 else "", # Pub Year
-        parts[4] if len(parts)>4 else "", # Added
-        parts[5] if len(parts)>5 else "", # Bill
-        parts[6] if len(parts)>6 else ""  # Acq
+        parts[3] if len(parts)>3 else "", # Pub Year (008)
+        parts[5] if len(parts)>5 else "", # Bill Date (952b)
+        parts[6] if len(parts)>6 else ""  # Date Acquired (952d)
     ]
     
-    for raw_date in date_candidates:
-        clean_year = parse_library_date(raw_date)
-        if clean_year:
-            return clean_year # e.g., "2021"
+    oldest_date = find_oldest_date(date_candidates)
+    
+    if oldest_date:
+        # Format as dd/mm/yyyy as requested
+        return f"({oldest_date.strftime('%d/%m/%Y')})"
 
     return None
 
@@ -93,14 +154,15 @@ def worker_task(batch, key_manager, data_manager):
                 title = parts[0] if len(parts) > 0 else "Unknown Title"
                 author = parts[1] if len(parts) > 1 else "Unknown Author"
                 
-                # Get Year or None
+                # Get Edition or Oldest Date or None using the new logic
                 date_context = resolve_provenance(parts)
                 
-                # Format: "ID -> Title, by Author (Year)"
+                # Format: "ID -> {Full Book Title}, By {Author / s Name} ({Context})"
                 if date_context:
-                    line_text = f"{title}, by {author} ({date_context})"
+                    # New, cleaner format for the LLM input
+                    line_text = f"{title}, By {author} {date_context}"
                 else:
-                    line_text = f"{title}, by {author}"
+                    line_text = f"{title}, By {author}"
                 
                 # We map it to ID so the AI knows where to put the JSON key
                 book_lines.append(f"ID: '{fp}' -> {line_text}")
@@ -121,8 +183,8 @@ def worker_task(batch, key_manager, data_manager):
             2. The VALUES are objects containing these EXACT fields:
                
                [CONTENT FIELDS]
-               - "description": A dense, 2-3-sentence technical summary (approx 25-80 words). Focus on specific concepts the student will learn (e.g., "Covers thermodynamics, entropy, and heat transfer...").
-               - "tags": A list of 6-8 specific domain keywords to aid search discovery. [Note: Avoid reusing words already present in the Title/Author].
+               - "description": A dense, 2 to 3 sentences of technical summary (approx 25-80 words). Focus on specific concepts the student will learn (e.g., "Covers thermodynamics, entropy, and heat transfer...").
+               - "tags": A list of 6 to 8 specific domain keywords to aid search discovery. [Note: Avoid reusing words already present in the Title/Author].
 
                [SMART LIBRARIAN FIELDS]
                - "critical_review": A 1-sentence judgment on the book's utility in 2025. Explicitly mention if the edition is old or the technology is deprecated (e.g., "Refers to Python 2.7" or "Predates the iPhone").
